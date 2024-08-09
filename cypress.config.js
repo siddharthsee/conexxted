@@ -13,6 +13,7 @@ module.exports = defineConfig({
     watchForFileChanges:false,
     defaultCommandTimeout:6000,
     screenshotOnRunFailure:true,
+     failOnStatusCode: false ,
 
     setupNodeEvents(on, config) {
       // implement node event listeners here

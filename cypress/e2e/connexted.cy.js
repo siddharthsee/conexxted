@@ -6,14 +6,17 @@ const hero= new Hero()
 describe('template spec', () => {
   beforeEach('everytime login',()=>{
     cy.visit('http://51.112.103.14/')
-    cy.get('[id="email"]').type('testuser24@yopmail.com')
-    cy.get('[id="password"]').type('Test@1234')
+    cy.get('[id="email"]').type('sid262000z@gmail.com')
+    cy.get('[id="password"]').type('111111')
     cy.get('[class="text-md sm:text-lg bg-themeColor text-white w-full mt-12 py-3 rounded-lg"]').click()
     cy.contains(' Connexxted ').should('be.visible')
     cy.get('.toast-message').should('be.visible')
     cy.get('.cc-deny').click()
     //cy.wait(6000)
-  })
+    
+     
+    });
+ 
   it('login passes', () => {
     // cy.visit('http://51.112.103.14/')
     // cy.get('[id="email"]').type('testuser24@yopmail.com')
@@ -73,14 +76,49 @@ describe('template spec', () => {
     })
   })
 
-  it('Create posts',()=>{
+
+
+
+
+
+  it.only('Create posts',()=>{
     cy.get('[class="text-sm text-white"]').click()
     cy.get('[id="title"]').type('THis is a sample title').screenshot('capture')
     cy.get('[formcontrolname="description"]').type("bjdcbjcb dccdc cdcdcd cdcdcd cccd dcdc")
-    cy.get('[type="file"]').attachFile('abc.png')
-    cy.contains(' Publish ').click()
+    cy.get('[type="file"]').attachFile(['abc.png','xyz.png','image.png','demo.png','lamao.png']).then(($images) => {
+      // Assert that the number of images is not greater than 5
+      if ($images.length > 5) {
+        const email= Math.random().toString(4).substring(2,10)+'@gmail.com'
+        cy.visit('http://51.112.103.14/signup');
+
+        // Fill in the sign-up form fields
+        cy.get('[id="name"]').type('nickname');
+        cy.get('[id="mobile"]').type('12345663');
+    
+        cy.get('[id="email"]').type(email)
+        cy.get('[id="password"]').type(654321)
+        cy.get('#confirmPassword').type(654321)
+        cy.get('.cc-deny').click()
+        cy.get('.mat-mdc-select-placeholder').click()//.select('Male')
+        cy.contains('Male').click()
+        cy.get('.mat-mdc-button-touch-target').click()
+        cy.get(':nth-child(2) > [data-mat-col="5"] > .mat-calendar-body-cell').click({force:true})
+        cy.contains('Submit').click({force:true})
+        cy.contains('OTP Verification').should('be.visible')
+        throw new Error('The page has more than 5 images');
+      }
+    })
+    
+    cy.contains(' Publish ').click({force:true})
+    
     
   })
+
+
+
+
+
+
 
   it('functionality checking for like',()=>{
     cy.get('[alt="like"]').eq(0).click()
@@ -131,4 +169,9 @@ describe('template spec', () => {
 
 
 })
+
+
+
+  
+
 

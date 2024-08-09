@@ -12,7 +12,7 @@ class Hero{
     }
 
     trendSettingScore(){
-      return  cy.contains(' Trend Setting score ').click()
+      return  cy.contains(' Trend Setting score ').click() 
     }
 
 
