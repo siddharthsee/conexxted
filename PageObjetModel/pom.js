@@ -143,6 +143,7 @@ class Lego {
         cy.contains(' Notifications ').should('be.visible')
         cy.go(-1)
     }
+    
     performanceIconCheck() {
         cy.contains('Performance').click()
         cy.contains('My Performance').should('be.visible')
@@ -151,12 +152,15 @@ class Lego {
         cy.contains('Performance').click()
 
     }
+
+    
     overallPerformanceCheck() {
         cy.contains('Performance').click()
         cy.contains('My Performance').should('be.visible')
         cy.get('#mat-select-value-1').click()
         //cy.get('#mat-select-value-1').click()
         cy.get('#mat-option-1').click()
+    
     }
 
 
